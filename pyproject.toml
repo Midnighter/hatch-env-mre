@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mre"
+version = "0.0.1"
+requires-python = ">=3.8"
+dependencies = ["appdirs"]
+
+[tool.hatch.envs.test]
+extra-dependencies = [
+  "pytest",
+]
+env-include = [
+    "MYAPP_*",
+]
+
+[[tool.hatch.envs.test.matrix]]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
+[tool.hatch.envs.test.scripts]
+run = "pytest {args} tests"
+
